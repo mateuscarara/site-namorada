@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feliz Dia dos Namorados 💖</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Feliz Dia dos Namorados, meu amor!</h1>
+    <p id="mensagemMaquina">Clique no botão para ver a surpresa...</p>
+    <button onclick="mostrarSurpresa()">Clique para ver uma surpresa 🎁</button>
+
+    <div id="surpresa" style="display:none;">
+      <div class="carrossel">
+        <img id="imagemCarrossel" src="foto1.jpg" alt="Foto nossa" />
+      </div>
+      <p>Essas são só algumas das nossas lembranças lindas... e muitas ainda virão! 💑</p>
+
+      <audio id="audio" src="apocalypse-1-original-lyrics-344749.mp3"></audio>
+
+      <div id="cronometro" class="cronometro"></div>
+    </div>
+  </div>
+  <div class="hearts-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
