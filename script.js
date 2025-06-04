@@ -56,8 +56,8 @@ function iniciarCronometro() {
     const horas = Math.floor(totalSegundos / 3600) % 24;
 
     document.getElementById("cronometro").textContent =
-      `Estamos juntos há: ${anos} ano(s), ${meses} mês(es), ${dias} dia(s), `
-      + `${horas}h ${minutos}m ${segundos}s 💖`;
+      `Estamos juntos há: ${anos} ano(s), ${meses} mês(es), ${dias} dia(s), ` +
+      `${horas}h ${minutos}m ${segundos}s 💖`;
   }, 1000);
 }
 
@@ -77,3 +77,38 @@ function criarCoracoes() {
     }, 6000);
   }, 300);
 }
+
+// ======================
+// Envio do formulário via fetch (ajax)
+const form = document.getElementById('formMensagem');
+const statusDiv = document.getElementById('statusMensagem');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const mensagem = document.getElementById('mensagem').value.trim();
+  if (!mensagem) return;
+
+  statusDiv.textContent = 'Enviando... 💌';
+
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/mateus.qc@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mensagem }),
+    });
+
+    if (response.ok) {
+      statusDiv.textContent = 'Mensagem enviada com sucesso! Obrigado, amor 💖';
+      form.reset();
+    } else {
+      throw new Error('Erro no envio');
+    }
+  } catch {
+    statusDiv.textContent = 'Ops, não consegui enviar. Tente novamente, por favor.';
+  }
+
+  setTimeout(() => {
+    statusDiv.textContent = '';
+  }, 5000);
+});
