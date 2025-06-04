@@ -37,6 +37,7 @@ button:hover {
   border-radius: 20px;
   transition: opacity 0.6s ease-in-out;
 }
+
 .cronometro {
   font-weight: bold;
   margin: 20px 0;
@@ -101,6 +102,7 @@ textarea {
     opacity: 0;
   }
 }
+
 .formulario {
   margin-top: 40px;
   display: flex;
@@ -148,4 +150,54 @@ textarea {
 
 .formulario button[type="submit"]:hover {
   background-color: #ff1493;
+}
+
+/* Feedback da mensagem logo abaixo do form */
+.feedback-msg {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #4caf50; /* verde sucesso */
+  min-height: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+}
+.feedback-msg.show {
+  opacity: 1;
+}
+
+.confete {
+  position: fixed;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #ff69b4;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 1100;
+  border-radius: 3px;
+  animation-name: confeteDrop;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confeteDrop {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+.mensagem-digitada {
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  max-width: 600px;
+  margin: 20px auto;
+  white-space: pre-wrap;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* sombra para legibilidade */
 }
