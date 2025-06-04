@@ -9,10 +9,7 @@
 <body>
   <div class="container">
     <h1>Feliz Dia dos Namorados, meu amor!</h1>
-    <p class="mensagem">
-      Desde que você entrou na minha vida, tudo ficou mais bonito. 💕<br />
-      Obrigado por ser quem você é. Te amo!
-    </p>
+    <p id="mensagemDigitada" class="mensagem-digitada"></p>
     <button id="botaoSurpresa">Clique para ver uma surpresa 🎁</button>
 
     <div id="surpresa" style="display:none;">
@@ -31,9 +28,9 @@
         <textarea id="mensagem" name="mensagem" placeholder="Escreve o que quiser, amor..." required></textarea>
 
         <button type="submit">Enviar ❤️</button>
-
-        <div id="statusMensagem" style="margin-top:10px; color:#ff1493; font-weight:bold;"></div>
       </form>
+
+      <div id="feedbackMsg" class="feedback-msg" aria-live="polite" role="alert"></div>
     </div>
   </div>
 
