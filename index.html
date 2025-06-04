@@ -2,15 +2,18 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Dia dos Namorados 💖</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>Feliz Dia dos Namorados, meu amor!</h1>
-    <p id="mensagemMaquina">Clique no botão para ver a surpresa...</p>
-    <button onclick="mostrarSurpresa()">Clique para ver uma surpresa 🎁</button>
+    <p class="mensagem">
+      Desde que você entrou na minha vida, tudo ficou mais bonito. 💕<br />
+      Obrigado por ser quem você é. Te amo!
+    </p>
+    <button id="botaoSurpresa">Clique para ver uma surpresa 🎁</button>
 
     <div id="surpresa" style="display:none;">
       <div class="carrossel">
@@ -21,10 +24,21 @@
       <audio id="audio" src="apocalypse-1-original-lyrics-344749.mp3"></audio>
 
       <div id="cronometro" class="cronometro"></div>
+
+      <form action="https://formsubmit.co/mateus.qc@gmail.com" method="POST" class="formulario">
+        <h2>Me mande uma mensagem caso você tenha gostado 💌</h2>
+
+        <textarea id="mensagem" name="mensagem" placeholder="Escreve o que quiser, amor..." required></textarea>
+
+        <button type="submit">Enviar ❤️</button>
+
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://example.com/obrigado.html" />
+      </form>
     </div>
   </div>
-  <div class="hearts-container"></div>
 
+  <div class="hearts-container"></div>
   <script src="script.js"></script>
 </body>
 </html>
