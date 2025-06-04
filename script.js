@@ -2,6 +2,8 @@ const botao = document.getElementById("botaoSurpresa");
 const surpresa = document.getElementById("surpresa");
 const audio = document.getElementById("audio");
 const imagemCarrossel = document.getElementById("imagemCarrossel");
+const form = document.getElementById("formMensagem");
+const feedbackMsg = document.getElementById("feedbackMsg");
 
 botao.addEventListener("click", () => {
   if (surpresa.style.display === "none") {
@@ -65,12 +67,12 @@ function iniciarCronometro() {
 let coracoesAtivos = false;
 function criarCoracoes() {
   coracoesAtivos = true;
-  const container = document.querySelector('.hearts-container');
+  const container = document.querySelector(".hearts-container");
   setInterval(() => {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
     container.appendChild(heart);
     setTimeout(() => {
       heart.remove();
@@ -78,37 +80,72 @@ function criarCoracoes() {
   }, 300);
 }
 
-// ======================
-// Envio do formulário via fetch (ajax)
-const form = document.getElementById('formMensagem');
-const statusDiv = document.getElementById('statusMensagem');
+// 🎉 Confete
+function criarConfete() {
+  for (let i = 0; i < 30; i++) {
+    const confete = document.createElement("div");
+    confete.classList.add("confete");
+    confete.style.left = Math.random() * window.innerWidth + "px";
+    confete.style.top = "0px"; // começo do topo
+    confete.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+    confete.style.animationDuration = (1 + Math.random()) + "s"; // duração entre 1s e 2s
+    confete.style.animationDelay = Math.random() * 0.5 + "s";
+    document.body.appendChild(confete);
+    confete.addEventListener("animationend", () => confete.remove());
+  }
+}
 
-form.addEventListener('submit', async (e) => {
+// 🎯 Envio do formulário com fetch para evitar reload
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  const mensagem = document.getElementById('mensagem').value.trim();
+  const mensagem = form.mensagem.value.trim();
   if (!mensagem) return;
 
-  statusDiv.textContent = 'Enviando... 💌';
-
   try {
-    const response = await fetch('https://formsubmit.co/ajax/mateus.qc@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    // Envie para o endpoint do FormSubmit
+    const response = await fetch("https://formsubmit.co/ajax/mateus.qc@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ mensagem }),
     });
 
     if (response.ok) {
-      statusDiv.textContent = 'Mensagem enviada com sucesso! Obrigado, amor 💖';
+      feedbackMsg.textContent = "Mensagem enviada com sucesso! Obrigado, amor 💖";
+      feedbackMsg.style.color = "#4caf50";
+      feedbackMsg.classList.add("show");
+      criarConfete();
       form.reset();
     } else {
-      throw new Error('Erro no envio');
+      throw new Error("Erro no envio");
     }
   } catch {
-    statusDiv.textContent = 'Ops, não consegui enviar. Tente novamente, por favor.';
+    feedbackMsg.textContent = "Ops, algo deu errado. Tente novamente.";
+    feedbackMsg.style.color = "#f44336";
+    feedbackMsg.classList.add("show");
   }
 
+  // Scroll para feedback visível
+  feedbackMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // Esconder a mensagem depois de 4 segundos
   setTimeout(() => {
-    statusDiv.textContent = '';
-  }, 5000);
+    feedbackMsg.classList.remove("show");
+    feedbackMsg.textContent = "";
+  }, 4000);
+});
+function digitarMensagem(texto, elementoId, velocidade = 50) {
+  const elemento = document.getElementById(elementoId);
+  let i = 0;
+  const intervalo = setInterval(() => {
+    elemento.textContent += texto[i];
+    i++;
+    if (i >= texto.length) clearInterval(intervalo);
+  }, velocidade);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  digitarMensagem(
+    "Desde que você entrou na minha vida, tudo ficou mais bonito. 💕 Obrigado por ser quem você é. Te amo!",
+    "mensagemDigitada"
+  );
 });
