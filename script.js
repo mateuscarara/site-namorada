@@ -16,7 +16,7 @@ botao.addEventListener("click", () => {
 });
 
 // 🎞️ Carrossel
-const imagens = ["foto1.jpg", "foto2.jpg", "foto3.jpg"];
+const imagens = ["foto1.jpg", "foto2.jpg", "foto4.jpg"];
 let indice = 0;
 let carrosselAtivo = false;
 
