@@ -114,3 +114,20 @@ button:hover {
     opacity: 0;
   }
 }
+/* Layout para desktop */
+.container {
+  width: 800px;
+  margin: auto;
+}
+
+/* Layout para telas pequenas */
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
