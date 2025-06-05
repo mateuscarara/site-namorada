@@ -58,7 +58,7 @@ function iniciarCronometro() {
     const horas = Math.floor(totalSegundos / 3600) % 24;
 
     document.getElementById("cronometro").textContent =
-      `Estamos juntos há: ${anos} ano(s), ${meses} mês(es), ${dias} dia(s), ` +
+      `Eu te amo há: ${anos} ano(s), ${meses} mês(es), ${dias} dia(s), ` +
       `${horas}h ${minutos}m ${segundos}s 💖`;
   }, 1000);
 }
