@@ -1,0 +1,250 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffe6f0;
+  color: #660033;
+  margin: 0;
+  padding: 20px;
+  overflow-x: hidden;
+}
+#entrada-romantica {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: linear-gradient(135deg, #ffe0ec, #f9d0ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 1s ease;
+}
+#entrada-romantica .caixa {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+#entrada-romantica h1 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #d14a86;
+}
+#entrada-romantica p {
+  font-size: 1em;
+  color: #444;
+  margin-bottom: 25px;
+}
+#entrar {
+  background: #ff88b3;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s, transform 0.2s;
+}
+#entrar:hover {
+  background: #ff6a9e;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+button {
+  background-color: #cc0066;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 20px 0;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #b30059;
+}
+
+.carrossel img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 20px;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.cronometro {
+  font-weight: bold;
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+textarea {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.hearts-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.heart {
+  position: fixed;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #ff66a3;
+  transform: rotate(45deg);
+  animation-name: subir;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff66a3;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-600px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.formulario {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+  width: 90%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formulario h2 {
+  font-size: 1.5rem;
+  color: #ff69b4;
+  text-align: center;
+}
+
+.formulario textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ffb6c1;
+  resize: vertical;
+  background-color: #fff0f5;
+  color: #333;
+}
+
+.formulario button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.formulario button[type="submit"]:hover {
+  background-color: #ff1493;
+}
+
+/* Feedback da mensagem logo abaixo do form */
+.feedback-msg {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #4caf50; /* verde sucesso */
+  min-height: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+}
+.feedback-msg.show {
+  opacity: 1;
+}
+
+.confete {
+  position: fixed;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #ff69b4;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 1100;
+  border-radius: 3px;
+  animation-name: confeteDrop;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confeteDrop {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+.mensagem-digitada {
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  max-width: 600px;
+  margin: 20px auto;
+  white-space: pre-wrap;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* sombra para legibilidade */
+}
