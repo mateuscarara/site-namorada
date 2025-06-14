@@ -5,11 +5,18 @@ const imagemCarrossel = document.getElementById("imagemCarrossel");
 const form = document.getElementById("formMensagem");
 const feedbackMsg = document.getElementById("feedbackMsg");
 
-  document.getElementById("entrar").addEventListener("click", function () {
-    document.getElementById("entrada-romantica").style.display = "none";
-    document.getElementById("conteudo-principal").style.display = "block";
-  });
-  
+// 👉 Texto digitando só quando clicar em "Entrar"
+document.getElementById("entrar").addEventListener("click", function () {
+  document.getElementById("entrada-romantica").style.display = "none";
+  document.getElementById("conteudo-principal").style.display = "block";
+
+  // ✅ Iniciar digitação aqui
+  digitarMensagem(
+    "Desde que você entrou na minha vida, tudo ficou mais bonito. 💕 Obrigado por ser quem você é. Te amo!",
+    "mensagemDigitada"
+  );
+});
+
 botao.addEventListener("click", () => {
   if (surpresa.style.display === "none") {
     surpresa.style.display = "block";
@@ -21,7 +28,7 @@ botao.addEventListener("click", () => {
 });
 
 // 🎞️ Carrossel
-const imagens = ["imagens/foto1.jpg", "imagens/foto2.jpg", "imagens/foto4.jpg", "imagens/foto5.jpg", "imagens/foto6.jpg", "imagens/foto7.jpg", "imagens/foto8.jpg"];
+const imagens = ["imagens/foto1.jpg", "imagens/foto2.jpg", "imagens/foto4.jpg", "imagens/foto5.jpg", "imagens/foto6.jpg", "imagens/foto7.jpg", "imagens/foto8.jpg", "imagens/foto9.jpg"];
 let indice = 0;
 let carrosselAtivo = false;
 
@@ -91,23 +98,22 @@ function criarConfete() {
     const confete = document.createElement("div");
     confete.classList.add("confete");
     confete.style.left = Math.random() * window.innerWidth + "px";
-    confete.style.top = "0px"; // começo do topo
+    confete.style.top = "0px";
     confete.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
-    confete.style.animationDuration = (1 + Math.random()) + "s"; // duração entre 1s e 2s
+    confete.style.animationDuration = (1 + Math.random()) + "s";
     confete.style.animationDelay = Math.random() * 0.5 + "s";
     document.body.appendChild(confete);
     confete.addEventListener("animationend", () => confete.remove());
   }
 }
 
-// 🎯 Envio do formulário com fetch para evitar reload
+// 🎯 Envio do formulário
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const mensagem = form.mensagem.value.trim();
   if (!mensagem) return;
 
   try {
-    // Envie para o endpoint do FormSubmit
     const response = await fetch("https://formsubmit.co/ajax/mateus.qc@gmail.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -129,17 +135,18 @@ form.addEventListener("submit", async (e) => {
     feedbackMsg.classList.add("show");
   }
 
-  // Scroll para feedback visível
   feedbackMsg.scrollIntoView({ behavior: "smooth", block: "center" });
 
-  // Esconder a mensagem depois de 4 segundos
   setTimeout(() => {
     feedbackMsg.classList.remove("show");
     feedbackMsg.textContent = "";
   }, 4000);
 });
+
+// ✍️ Função digitação
 function digitarMensagem(texto, elementoId, velocidade = 50) {
   const elemento = document.getElementById(elementoId);
+  elemento.textContent = ""; // zera o texto antes de começar
   let i = 0;
   const intervalo = setInterval(() => {
     elemento.textContent += texto[i];
@@ -147,10 +154,3 @@ function digitarMensagem(texto, elementoId, velocidade = 50) {
     if (i >= texto.length) clearInterval(intervalo);
   }, velocidade);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  digitarMensagem(
-    "Desde que você entrou na minha vida, tudo ficou mais bonito. 💕 Obrigado por ser quem você é. Te amo!",
-    "mensagemDigitada"
-  );
-});
